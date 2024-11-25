@@ -50,7 +50,7 @@ func DeleteHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	log.Println("Serving:", r.URL.Path, "from", r.Host)
 	telephone := paramStr[2]
-	err := Handlers.deleteEntry(telephone)
+	err := Handlers.DeleteEntry(telephone)
 	if err != nil {
 		fmt.Println(err)
 		Body := err.Error() + "\n"
@@ -72,7 +72,7 @@ list(), которая используется в пути /list, не може
 func ListHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Serving:", r.URL.Path, "from", r.Host)
 	w.WriteHeader(http.StatusOK)
-	Body := Handlers.list()
+	Body := Handlers.List()
 	fmt.Fprintf(w, "%s", Body)
 }
 
@@ -84,7 +84,7 @@ func ListHandler(w http.ResponseWriter, r *http.Request) {
 func StatusHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Serving:", r.URL.Path, "from", r.Host)
 	w.WriteHeader(http.StatusOK)
-	Body := fmt.Sprintf("total entries: %d\n", Handlers.status() /* len(data)*/)
+	Body := fmt.Sprintf("total entries: %d\n", Handlers.Status() /* len(data)*/)
 	fmt.Fprintf(w, "%s", Body)
 }
 
@@ -108,7 +108,7 @@ func InsertHandler(w http.ResponseWriter, r *http.Request) {
 	// }
 
 	// temp := &Entry{Name: name, Surname: surename, Tel: t}
-	err := Handlers.insert(name, surename, t)
+	err := Handlers.Insert(name, surename, t)
 	if err != nil {
 		w.WriteHeader(http.StatusNotModified)
 		Body := "Failed to add record\n"
@@ -137,7 +137,7 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	var Body string
 	telephone := paramStr[2]
-	name, surename, t := Handlers.search(telephone)
+	name, surename, t := Handlers.Search(telephone)
 	if t == "" {
 		w.WriteHeader(http.StatusNotFound)
 		Body = "Could not be found: " + telephone + "\n"
