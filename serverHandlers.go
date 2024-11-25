@@ -102,12 +102,12 @@ func InsertHandler(w http.ResponseWriter, r *http.Request) {
 	tel := paramStr[4]
 
 	t := strings.ReplaceAll(tel, "-", "")
-	if !matchTel(t) {
-		fmt.Println("Not a valid telephone number:", tel)
-		return
-	}
+	// if !matchTel(t) {
+	// 	fmt.Println("Not a valid telephone number:", tel)
+	// 	return
+	// }
 
-	temp := &Entry{Name: name, Surname: surename, Tel: t}
+	// temp := &Entry{Name: name, Surname: surename, Tel: t}
 	err := Handlers.insert(name, surename, t)
 	if err != nil {
 		w.WriteHeader(http.StatusNotModified)
