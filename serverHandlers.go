@@ -10,11 +10,11 @@ import (
 const PORT = ":1234"
 
 type PhoneHandlers interface {
-	deleteEntry(key string) error
-	list() string
-	insert(name, surename, tel string) error
-	status() int
-	search(key string) (name, surename, tel string)
+	DeleteEntry(key string) error
+	List() string
+	Insert(name, surename, tel string) error
+	Status() int
+	Search(key string) (name, surename, tel string)
 }
 
 var Handlers PhoneHandlers
